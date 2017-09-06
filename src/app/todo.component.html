@@ -1,0 +1,28 @@
+<h1>Todo List</h1>
+
+<div class="list-group">
+  <button *ngFor="let t of todos" class="list-group-item"
+          (click)="toggleCompleted(t)">
+    <span *ngIf="t.completed; else uncheck"
+          class="glyphicon glyphicon-check"></span>
+    <ng-template #uncheck>
+      <span class="glyphicon glyphicon-unchecked"></span>
+    </ng-template>
+    {{t.title}}
+  </button>
+</div>
+
+<h4>Total Items: {{todos?.length}}</h4>
+<hr>
+
+<div class="input-group">
+  <input class="form-control" placeholder="Type a new todo..."
+         [(ngModel)]="newTodo">
+  <div class="input-group-btn">
+    <button class="btn btn-primary" type="button"
+            (click)="addTodo()" [disabled]="!todos">
+      <span class="glyphicon glyphicon-plus"></span> Add
+    </button>
+  </div>
+</div>
+
